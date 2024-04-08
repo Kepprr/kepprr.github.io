@@ -1,0 +1,176 @@
+body {
+    background-color: rgba(149, 203, 226, 0.7);
+    font-family: 'Open Sans', sans-serif;
+    margin: 20px auto;
+    max-width: 1000px;
+    padding: none 1em 1em 1em;
+}
+
+@media (max-width:992px){
+    body {
+        max-width:750px;
+    }
+}
+
+@media (max-width:767px){
+    body {
+        max-width:600px;
+    }
+
+    .deleteAllBtn {
+        margin-top: 1em;
+    }
+
+}
+
+.container {
+    border-radius: 9px;
+    background-color: rgba(141, 118, 207, 0.7);
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+    height: auto;
+    padding: 1.2em;
+    margin-bottom: 1em;
+}
+
+.tasks {
+    border-radius: 9px;
+    background-color: rgba(141, 118, 207, 0.7);
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+    height: auto;
+    min-height: 600px;
+    padding: 1em;
+}
+
+.header {
+    text-align: start;
+    font-size: larger;
+}
+
+.field{
+    background-color: rgba(242, 158, 196, 0.7);
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    border: none;
+    border-radius: 7px;
+    line-height: 40px;
+    width: 60%;
+    font-weight: bold;
+    font-size: larger;
+}
+
+.field:focus {
+    outline: 0;
+}
+
+.add {
+    background-color: rgba(242, 158, 196, 0.7);
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    border: none;
+    border-radius: 7px;
+    line-height: 40px;
+    width: 110px;
+    font-weight: bold;
+    font-size: larger;
+    cursor: pointer;
+}
+
+.add:hover {
+    background-color: rgb(242, 158, 196);
+    color: #666666;
+}
+
+.deleteAllBtn {
+    background-color: rgba(224, 101, 101, 0.9);
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    border: none;
+    border-radius: 7px;
+    line-height: 40px;
+    width: 150px;
+    font-weight: bold;
+    font-size: larger;
+    cursor: pointer;
+}
+
+.deleteAllBtn:hover {
+    background-color: rgba(228, 117, 117, 0.9);
+    color: #666666;
+}
+
+.task {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    background-color: rgba(229, 153, 153, 0.9);
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    border-radius: 7px;
+    line-height: 40px;
+    width: 88%;
+    font-weight: bold;
+    font-size: larger;
+    margin: 10px auto 10px 0;
+    overflow: hidden;
+}
+
+.success {
+    background-color: rgba(169, 231, 153, 0.7);
+}
+
+.deleteBtn {
+    order: 3;
+    margin: 1em;
+    height: 30px;
+    width: 90px;
+    font-weight: bold;
+    font-size: large;
+    background-color: rgba(224, 101, 101, 0.9);
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+}
+
+.deleteBtn:hover {
+    background-color: rgba(228, 117, 117, 0.9);
+    color: #666666;
+}
+ 
+.editBtn {
+    margin: 1em 0 1em auto;
+    height: 30px;
+    width: 147px;
+    font-weight: bold;
+    font-size: large;
+    background-color: rgba(109, 224, 147, 0.9);
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+}
+
+.editBtn:hover {
+    background-color: rgba(140, 221, 167, 0.9);
+    color: #666666;
+}
+
+.status {
+    order: -1;
+    margin: 1em ;
+    height: 20px;
+    width: 20px;
+}
+
+.taskField {
+    font-weight: bold;
+    font-size: larger;
+    background-color: rgb(141, 118, 207, 0.7);
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    border: none;
+    border-radius: 7px;
+}
+
+.taskField:focus {
+    outline: 0;
+}
+
+.task > p {
+    margin: 0;
+}
