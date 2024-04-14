@@ -110,6 +110,11 @@ body {
     margin: 10px auto 10px 0;
     padding-left: 1em;
     overflow: hidden;
+    overflow-wrap: break-word;
+}
+
+.task > p {
+    max-width: calc(100% - 150px);
 }
 
 .success {
