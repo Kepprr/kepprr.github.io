@@ -114,7 +114,7 @@ body {
 }
 
 .task > p {
-    max-width: calc(100% - 150px);
+    max-width: calc(100% - 1px);
 }
 
 .success {
@@ -141,7 +141,7 @@ body {
 }
  
 .editBtn {
-    margin: 1em 1em 1em auto;
+    margin: 1em 0.5em 1em auto;
     height: 40px;
     width: 40px;
     font-size: large;
