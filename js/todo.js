@@ -90,7 +90,7 @@ function deleteAllTask() {
         alert('Текущих задач нет');
 
     } else if (confirm('Вы хотите удалить все задачи. Продолжить?')) {
-        for (let i = 0; i < taskList.length - 1; i++) {
+        for (let i = 0; i < taskList.length; i++) {
             while (taskList[i] !== undefined) {
                 taskList[i].remove();
             } 
