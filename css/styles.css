@@ -114,7 +114,7 @@ body {
 }
 
 .task > p {
-    max-width: calc(100% - 1px);
+    max-width: calc(100% - 150px);
 }
 
 .success {
@@ -164,7 +164,6 @@ body {
     height: 20px;
 }
 
-
 .taskField {
     font-size: larger;
     background-color: rgb(141, 118, 207, 0.7);
@@ -176,8 +175,4 @@ body {
 
 .taskField:focus {
     outline: 0;
-}
-
-.task > p {
-    margin: 0;
 }
