@@ -115,6 +115,7 @@ body {
 
 .task > p {
     max-width: calc(100% - 150px);
+    line-height: 1.5em;
 }
 
 .success {
