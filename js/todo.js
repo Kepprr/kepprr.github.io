@@ -4,6 +4,7 @@ const field = document.querySelector('.field');
 const add = document.querySelector('.add');
 const list = document.querySelector('.list');
 const deleteAllBtn = document.querySelector('.deleteAllBtn');
+const noTasks = document.querySelector('.no-tasks');
 
 function saveTasks() {
     const tasks = document.querySelectorAll('.task');
@@ -17,7 +18,7 @@ function saveTasks() {
     localStorage.setItem("tasks", JSON.stringify(data));
 };
 
-const loadTasks = () => {
+function loadTasks() {
     const data = JSON.parse(localStorage.getItem("tasks")) || [];
   
     data.forEach((task) => {
@@ -34,6 +35,7 @@ const loadTasks = () => {
 
 function createTask(value) {
     const task = document.createElement('div');
+
     const text = document.createElement('p');
     text.textContent = value;
     task.appendChild(text);
@@ -42,21 +44,19 @@ function createTask(value) {
 
     const checkbox = document.createElement('input');
     checkbox.type = 'checkbox';
-    checkbox.classList.add('status');
+    checkbox.className = 'status';
     task.appendChild(checkbox);
     checkbox.addEventListener('click', completeTask);
    
     const deleteBtn = document.createElement('button');
     deleteBtn.type = 'button';
-    deleteBtn.classList.add('deleteBtn');
-    deleteBtn.innerText = 'Удалить';
+    deleteBtn.className = 'deleteBtn fa fa-times'
     task.appendChild(deleteBtn);
     deleteBtn.addEventListener('click', deleteTask);
 
     const editBtn = document.createElement('button');
     editBtn.type = 'button';
-    editBtn.classList.add('editBtn');
-    editBtn.innerText = 'Редактировать';
+    editBtn.className = 'editBtn fa fa-pencil';
     task.appendChild(editBtn);
     editBtn.addEventListener('click', editTask);
 
@@ -64,7 +64,7 @@ function createTask(value) {
 };
 
 function addTask() {
-    if (field.value) {  
+    if (field.value.trim()) {  
         const newTask = createTask(field.value);
         list.appendChild(newTask);
         field.value = '';
@@ -77,11 +77,7 @@ function completeTask(event) {
     const target = event.target;
     const parent = target.parentElement;
 
-    if (target.checked) {
-        parent.classList.add('success');
-    } else {
-        parent.classList.remove('success');
-    };
+    parent.classList.toggle('success');
 
     saveTasks();
 };
@@ -89,13 +85,13 @@ function completeTask(event) {
 function deleteAllTask() {
     const taskList = list.children;
 
-    if (taskList.length == 0) {
+    if (!taskList.length) {
         
         alert('Текущих задач нет');
 
     } else if (confirm('Вы хотите удалить все задачи. Продолжить?')) {
-        for(let i = 0; i < taskList.length; i++) {
-            while(taskList[i] !== undefined) {
+        for (let i = 0; i < taskList.length - 1; i++) {
+            while (taskList[i] !== undefined) {
                 taskList[i].remove();
             } 
         }
@@ -107,7 +103,7 @@ function deleteTask(event) {
     const target = event.target.parentElement;
     list.removeChild(target);
 
-    if (list.children.length > 1) {
+    if (list.children.length) {
         saveTasks();
     } else localStorage.clear();
     
@@ -117,23 +113,55 @@ function editTask(event) {
     const target = event.target.parentElement;
     const taskText = target.firstElementChild;
 
+    event.target.className = 'editBtn fa fa-floppy-o';
+
     const inputText = document.createElement('input');
-    inputText.classList.add('taskField');
+    inputText.className = 'taskField text';
     inputText.type = 'text';
     inputText.value = taskText.textContent;
     
     target.replaceChild(inputText, taskText);
-    inputText.addEventListener('keydown', saveEditTask)
+    inputText.addEventListener("keydown", saveEditTaskEnter);
+    event.target.removeEventListener("click", editTask);
+    event.target.addEventListener("click", saveEditTask);
+}
+
+function saveEditTaskEnter(event) {
+    const textValue = event.target.value;
+    const task = event.target.parentElement;
+    const taskText = document.createElement('p');
+    const button = task.querySelector('.editBtn');
+    
+    taskText.classList.add('text');
+    taskText.textContent = textValue.trim();
+
+    if (event.key === 'Enter' && textValue.trim()) {
+        task.replaceChild(taskText, event.target);
+
+        button.className = 'editBtn fa fa-pencil'
+        button.removeEventListener("click", saveEditTask);
+        button.addEventListener("click", editTask);
+
+        saveTasks();
+    }
 }
 
 function saveEditTask(event) {
-    const inputText = event.target.value;
+    const task = event.target.parentElement;
     const taskText = document.createElement('p');
-    taskText.classList.add('text');
-    taskText.textContent = inputText;
+    const inputText = task.firstElementChild;
+    const textValue = inputText.value;
+    const button = task.querySelector('.editBtn')
 
-    if (event.key === 'Enter' && inputText) {
-        event.target.parentElement.replaceChild(taskText, event.target);
+    taskText.classList.add('text');
+    taskText.textContent = textValue.trim();
+
+    if (textValue.trim()) {
+        task.replaceChild(taskText, inputText);
+
+        button.className = 'editBtn fa fa-pencil'
+        button.removeEventListener("click", saveEditTask);
+        button.addEventListener("click", editTask);
 
         saveTasks();
     }
@@ -144,7 +172,7 @@ add.addEventListener('click', addTask);
 deleteAllBtn.addEventListener('click', deleteAllTask);
 
 field.addEventListener('keydown', function(event) {
-    if (event.key === 'Enter' && field.value) {  
+    if (event.key === 'Enter' && field.value.trim()) {  
         const newTask = createTask(field.value);
         list.appendChild(newTask);
         field.value = '';
