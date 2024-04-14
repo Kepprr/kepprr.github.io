@@ -84,19 +84,20 @@ function completeTask(event) {
 
 function deleteAllTask() {
     const taskList = list.children;
+    const tasksCount = taskList.length;
 
-    if (!taskList.length) {
-        
+    if (tasksCount === 0) {
         alert('Текущих задач нет');
-
-    } else if (confirm('Вы хотите удалить все задачи. Продолжить?')) {
-        for (let i = 0; i < taskList.length; i++) {
-            while (taskList[i] !== undefined) {
-                taskList[i].remove();
-            } 
-        }
-        localStorage.clear();
+        return;
     }
+
+    const isConfirmed = confirm('Вы хотите удалить все задачи. Продолжить?');
+    if (!isConfirmed) return;
+
+    for (let i = tasksCount - 1; i >= 0; i--) {
+        taskList[i].remove();
+    }
+    localStorage.clear();
 };
 
 function deleteTask(event) {
