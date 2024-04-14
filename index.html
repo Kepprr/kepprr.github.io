@@ -6,27 +6,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+
     <title>TODO</title>
   </head>
 
   <body>
 
-    <header class="header">
-      <h1>&#x1F48C Tasks list</h1>
-    </header>
-
     <div class="container">
 
       <div class="control">
+
         <input class="field" type="text" placeholder="Введи задачу" />
-        <button class="add" type="button">Добавить</button>
-        <button class="deleteAllBtn" type="button">Удалить все</button>
-      </div>
+        
+        <button class="add" type="button">
+          <i class="fa fa-plus" aria-hidden="true"></i>
+        </button>
+        
+        <button class="deleteAllBtn" type="button">
+          <i class="fa fa-trash" aria-hidden="true"></i>
+        </button>
 
-    </div>
-
-    <div class="tasks">
-
+      </div>      
+        
       <div class="list"></div>
 
     </div>
